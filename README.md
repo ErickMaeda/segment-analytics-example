@@ -4,6 +4,9 @@ This is a usage sample of [Segment](https://segment.com/) library
 
 <img src="assets/react-native.png" width="400"/> <img src="assets/segment.png" width="400"/> 
 
+## Segment Analytics Destinations/Integrations
+- [X] Google Analytics
+
 ## Setup
 
 ### Create Segment Project
