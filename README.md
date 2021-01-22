@@ -1,4 +1,4 @@
-# segment-analytics-example
+# Segment Analytics Sample
 
 ## Setup
 
