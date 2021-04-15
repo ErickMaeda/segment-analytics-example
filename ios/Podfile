@@ -7,27 +7,4 @@ target 'segmentanalytics' do
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
-
-  target 'segmentanalyticsTests' do
-    inherit! :complete
-    # Pods for testing
-  end
-
-  # Enables Flipper.
-  #
-  # Note that if you have use_frameworks! enabled, Flipper will not work and
-  # you should disable these next few lines.
-  use_flipper!
-  post_install do |installer|
-    flipper_post_install(installer)
-  end
-end
-
-target 'segmentanalytics-tvOS' do
-  # Pods for segmentanalytics-tvOS
-
-  target 'segmentanalytics-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
 end

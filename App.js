@@ -9,35 +9,36 @@ import {
 } from 'react-native';
 import {Header, Colors} from 'react-native/Libraries/NewAppScreen';
 import analytics from '@segment/analytics-react-native';
-import Firebase from '@segment/analytics-react-native-google-analytics';
+import Amplitude from '@segment/analytics-react-native-amplitude';
+
+const setupAnalytics = () => {
+  analytics
+    .setup('ADD_YOUR_KEY_HERE', {
+      recordScreenViews: true,
+      trackAppLifecycleEvents: true,
+      using: [Amplitude],
+      android: {
+        flushInterval: 60000, // 60 seconds
+        collectDeviceId: true,
+      },
+      ios: {
+        trackAdvertising: true,
+        trackDeepLinks: true,
+      },
+    })
+    .then(() => console.log('Analytics is ready'))
+    .catch((err) => console.error('Something went wrong', err));
+};
 
 const App = () => {
   useEffect(() => {
     setupAnalytics();
   }, []);
 
-  const setupAnalytics = () => {
-    analytics
-      .setup('ADD_YOUR_KEY_HERE', {
-        recordScreenViews: true,
-        trackAppLifecycleEvents: true,
-        using: [Firebase],
-        android: {
-          flushInterval: 60000, // 60 seconds
-          collectDeviceId: true,
-        },
-        ios: {
-          trackAdvertising: true,
-          trackDeepLinks: true,
-        },
-      })
-      .then(() => console.log('Analytics is ready'))
-      .catch((err) => console.error('Something went wrong', err));
-  };
-
   const sendEvent = (eventName, eventParams) => {
     analytics.track(eventName, eventParams);
   };
+
   const sendLoginEvent = () => {
     analytics.identify("a user's id", {
       email: 'jsmith@example.com',
